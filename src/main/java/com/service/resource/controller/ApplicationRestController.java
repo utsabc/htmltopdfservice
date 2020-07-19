@@ -14,6 +14,8 @@ import com.service.resource.pojos.HealthMetric;
 import com.service.resource.pojos.InputEntity;
 import com.service.resource.pojos.OutputEntity;
 
+import io.swagger.annotations.ApiOperation;
+
 
 @Controller
 @RequestMapping("/service")
@@ -23,12 +25,13 @@ public class ApplicationRestController {
 	@Autowired
 	ICoreService coreService;
 
-	@RequestMapping(value = "/heartBeat", method = RequestMethod.GET)
+	@ApiOperation("HeartBeat")
+	@RequestMapping(value = "/heartbeat", method = RequestMethod.GET)
 	public ResponseEntity<HealthMetric> index() {
 		return ResponseEntity.ok(coreService.heartBeat());
 	}
 	
-
+	@ApiOperation("Process")
 	@RequestMapping(value = "/generate", method = RequestMethod.POST)
 	public ResponseEntity<OutputEntity> generate(@RequestBody InputEntity input) throws Exception {
 		return ResponseEntity.ok(coreService.process(input));

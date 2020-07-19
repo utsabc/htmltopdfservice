@@ -28,11 +28,11 @@ public class SwaggerConfig {
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
             .title("htmltopdf-Service")
-            .description("Swagger api documentation of exposed rest apis of service")
+            .description("Swagger api documentation of exposed rest apis of service \nGetting Started: https://github.com/utsabc/htmltopdfservice/wiki")
             .version("1.0-SNAPSHOT")
             .termsOfServiceUrl("http://terms-of-services.url(to be updated)")
-            .license("LICENSE(to be updated)")
-            .licenseUrl("http://url-to-license.com(to be updated)")
+            .license("LICENSE")
+            .licenseUrl("https://github.com/utsabc/htmltopdfservice/blob/master/LICENSE")
             .build();
     }
 
