@@ -10,5 +10,4 @@ public class HtmltopdfServiceApplication {
 		SpringApplication.run(HtmltopdfServiceApplication.class, args);
 	}
 
-	//all bean definitions can come here
 }

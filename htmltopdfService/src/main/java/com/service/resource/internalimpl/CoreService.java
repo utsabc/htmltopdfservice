@@ -37,11 +37,9 @@ public class CoreService implements ICoreService {
 		byte[] output = parseToPdf(doc,input.getFilename());
 		response.setFilename(input.getFilename().concat(".pdf"));
 		response.setContent(Base64.encodeBase64String(output));
-		FileOutputStream fos = new FileOutputStream("C:\\Users\\Retro Ronin\\Desktop\\Grad Courses\\"+response.getFilename()+"test"+".pdf");
-		fos.write(output);
-		fos.close();
 		return response;
 	}
+	
 	private org.w3c.dom.Document htmlParseW3C(String html){
 
 		Document doc = null;
@@ -50,7 +48,6 @@ public class CoreService implements ICoreService {
 	}
 
 	private byte[] parseToPdf(org.w3c.dom.Document input,String filename) throws Exception { 
-		//"C:\\Users\\Retro Ronin\\Desktop\\Grad Courses\\"+filename+".pdf"
 		try (OutputStream bytearrayStream = new ByteArrayOutputStream()){
 			byte[] pdfByteArray = null;
 			logger.info((String) commonUtil.getInfoMap().get("Host"));
@@ -65,6 +62,7 @@ public class CoreService implements ICoreService {
 		}
 
 	}
+	
 	@Override
 	public HealthMetric heartBeat() {
 		RuntimeMXBean runtimeMXBean = ManagementFactory.getRuntimeMXBean();

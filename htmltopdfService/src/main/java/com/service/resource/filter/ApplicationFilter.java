@@ -60,14 +60,13 @@ public class ApplicationFilter implements Filter{
  
         System.out.println("init() method has been get invoked");
         System.out.println("Filter name is "+config.getFilterName());
-        System.out.println("ServletContext name is"+config.getServletContext());
+        System.out.println("ServletContext name is"+config.getServletContext().getServletContextName());
         System.out.println("init() method is ended");
     }
  
 	@Override
     public void destroy() {
-        //do some stuff like clearing the resources
- 
+        //to do some stuff like clearing the resources
     }
 
 }
