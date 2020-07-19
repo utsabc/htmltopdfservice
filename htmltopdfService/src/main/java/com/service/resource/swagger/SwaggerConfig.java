@@ -32,7 +32,7 @@ public class SwaggerConfig {
             .version("1.0-SNAPSHOT")
             .termsOfServiceUrl("http://terms-of-services.url(to be updated)")
             .license("LICENSE(to be updated)")
-            .licenseUrl("http://url-to-license.com(to be updated)")
+            .licenseUrl("https://github.com/utsabc/htmltopdfservice/blob/master/LICENSE")
             .build();
     }
 
