@@ -1,14 +1,12 @@
 package com.service.resource.internalimpl;
 
 import java.io.ByteArrayOutputStream;
-import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.lang.management.ManagementFactory;
 import java.lang.management.RuntimeMXBean;
 
 import org.apache.commons.codec.binary.Base64;
 import org.jsoup.Jsoup;
-import org.jsoup.helper.W3CDom;
 import org.jsoup.nodes.Document;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,12 +37,14 @@ public class CoreService implements ICoreService {
 		response.setContent(Base64.encodeBase64String(output));
 		return response;
 	}
-	
+
 	private org.w3c.dom.Document htmlParseW3C(String html){
 
 		Document doc = null;
 		doc = Jsoup.parse(html);
-		return new W3CDom().fromJsoup(doc);
+		doc.select("img").attr("width", "500");
+		org.w3c.dom.Document w3cDoc= DOMBuilder.jsoup2DOM(doc);
+		return w3cDoc;
 	}
 
 	private byte[] parseToPdf(org.w3c.dom.Document input,String filename) throws Exception { 
@@ -53,7 +53,7 @@ public class CoreService implements ICoreService {
 			logger.info((String) commonUtil.getInfoMap().get("Host"));
 			PdfRendererBuilder builder = new PdfRendererBuilder();
 			builder.useFastMode();
-			builder.withW3cDocument(input, "http://"+(String) commonUtil.getInfoMap().get("Host"));
+			builder.withW3cDocument(input, "http://"+(String) commonUtil.getInfoMap().getOrDefault("Host", "127.0.0.1:8080"));
 			builder.toStream(bytearrayStream);
 			builder.run();
 			pdfByteArray = ((ByteArrayOutputStream)bytearrayStream).toByteArray();
